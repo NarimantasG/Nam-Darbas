@@ -24,21 +24,22 @@ namespace AutomatinisTestavimas.Page
 
         private IWebElement _checkBox4 => _Driver.FindElement(By.CssSelector("#easycont > div > div.col-md-6.text-left > div:nth-child(5) > div.panel-body > div:nth-child(6) > label > input"));
 
-        private IWebElement _uncheckAll => _Driver.FindElement(By.Id("#check1"));
+        private IWebElement _uncheckAll => _Driver.FindElement(By.Id("check1"));
 
         public CheckBoxDemoInputPage(IWebDriver webDriver)
         {
             _Driver = webDriver;
         }
+        
         public void ClickOnSingleCheckboxDemoCheckbox()
         {
             _clickOnThisCheckbox.Click();
             
         }
 
-        public void CheckSingleCheckboxDemoMessage(string TextPage)
+        public void CheckSingleCheckboxDemoMessage(string Text)
         {
-            Assert.AreEqual(_checkBoxIsChecked.Text, TextPage, "Text is different");
+            Assert.AreEqual(Text,_checkBoxIsChecked.Text, "Text is different");
         }
 
         public void ClickCheckbox1()
@@ -58,15 +59,20 @@ namespace AutomatinisTestavimas.Page
         {
             _checkBox4.Click();
         }
-
-        public void CheckIfbuttonSayUncheckAll(string result)
+        public void ClickUncheckAll1()
         {
-            Assert.AreEqual(_uncheckAll.Text, result, "Result is diffreant");
+            _uncheckAll.Click();
+        }
+
+        public void CheckIfbuttonSayUncheckAll(bool result)
+        {
+            Assert.AreEqual(_uncheckAll.Displayed, result, "Result is diffreant");
         }
 
         public void ClickUncheckAll()
         {
             _uncheckAll.Click();
         }
+
     }
 }

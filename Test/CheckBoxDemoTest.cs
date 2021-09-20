@@ -23,11 +23,11 @@ namespace AutomatinisTestavimas.Test
             _Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             _Driver.Url = "https://www.seleniumeasy.com/test/basic-checkbox-demo.html";
 
-            WebDriverWait wait = new WebDriverWait(_Driver, TimeSpan.FromSeconds(10));
+            //WebDriverWait wait = new WebDriverWait(_Driver, TimeSpan.FromSeconds(10));
 
-            IWebElement popup = _Driver.FindElement(By.Id("at-cv-lightbox-close"));
-            wait.Until(e => e.FindElement(By.Id("at-cv-lightbox-close")).Displayed);
-            popup.Click();
+            //IWebElement popup = _Driver.FindElement(By.Id("at-cv-lightbox-close"));
+            //wait.Until(e => e.FindElement(By.Id("at-cv-lightbox-close")).Displayed);
+            //popup.Click();
         }
 
         [OneTimeTearDown]
@@ -40,11 +40,19 @@ namespace AutomatinisTestavimas.Test
         public static void CheckBoxDemo()
         {
             CheckBoxDemoInputPage page = new CheckBoxDemoInputPage(_Driver);
-            string text = "Success - Check box is checked";
-            string result = "Uncheck All";
-
-            page.CheckSingleCheckboxDemoMessage(text);
+            string Text = "Success - Check box is checked";
+            bool result = true;
+            _Driver.FindElement(By.Id("isAgeSelected"));
+            
+            page.ClickOnSingleCheckboxDemoCheckbox();
+            page.CheckSingleCheckboxDemoMessage(Text);
+            page.ClickCheckbox1();
+            page.ClickCheckbox2();
+            page.ClickCheckbox3();
+            page.ClickCheckbox4();
+            page.ClickUncheckAll1();
             page.CheckIfbuttonSayUncheckAll(result);
+            page.ClickUncheckAll();
         }
     }
 }
